@@ -185,6 +185,20 @@ docs/screenshots/          # README images
   app doesn't use the specific features those advisories target, so exposure is low, but the
   honest status is "outstanding, tracked, mitigated by non-use," not "clean." The safe patch
   that *was* a drop-in (Next.js 14.2.35) is applied.
+- **Two critical advisories in that same set, named precisely rather than lumped in above:**
+  - [GHSA-2xp9-vwfh-vxw4](https://github.com/advisories/GHSA-2xp9-vwfh-vxw4) (CVSS 9.5) — a
+    remote code execution issue in Next's built-in Image Optimization API when processing AVIF
+    input, unpatched on the 14.2.x line. This app never renders images through `next/image`, so
+    the vulnerable endpoint has no reason to be reachable — and rather than rely on "we don't
+    happen to call it," `next.config.mjs` sets `images.unoptimized: true`, which disables the
+    Image Optimization API outright. That's the same interim mitigation the advisory itself
+    recommends for apps that can't yet move to a patched major version.
+  - [CVE-2026-75604](https://github.com/advisories/GHSA-p293-qw3h-jr36) (CVSS 9.0) — a
+    path-traversal RCE, also unpatched on 14.2.x, but explicitly scoped to Windows filesystem
+    semantics. This project has no documented Windows deployment path (typical hosting for a
+    Next.js app — Vercel, or a container built on a Linux base image — isn't exposed to it), so
+    it's listed here for completeness rather than left unmentioned because it sounds
+    inconvenient.
 
 ## Roadmap
 
