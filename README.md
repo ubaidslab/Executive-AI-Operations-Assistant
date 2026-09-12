@@ -143,6 +143,10 @@ npm run build       # production build
 
 All four run in CI on every push and pull request to `main`.
 
+**Testing this yourself:** for a full step-by-step walkthrough — install, seed, see what works
+with zero AI key configured, wire up a provider, and drive the actual tool-calling loop from the
+chat UI — see [`docs/TESTING_GUIDE.md`](./docs/TESTING_GUIDE.md).
+
 ## Project structure
 
 ```
